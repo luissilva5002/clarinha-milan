@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff4ef">
+  <title>Para a minha Clarinha ♥</title>
+  <style>
+    :root {
+      --cream: #fff8f0; --paper: #fffdf9; --rose: #d85f78;
+      --rose-dark: #a83f59; --pink: #f6c9d2; --ink: #573b43;
+      --muted: #936f77; --gold: #d6a95f;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; min-height: 100vh; color: var(--ink);
+      background: radial-gradient(circle at 12% 12%, rgba(246,201,210,.45), transparent 26rem),
+                  radial-gradient(circle at 90% 78%, rgba(255,219,166,.34), transparent 24rem), var(--cream);
+      font-family: Georgia, "Times New Roman", serif; overflow-x: hidden;
+    }
+    .floating-hearts { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .heart { position: absolute; bottom: -50px; color: rgba(216,95,120,.35);
+      font-size: clamp(16px, 2.4vw, 28px); animation: float-up linear infinite;
+      filter: drop-shadow(0 2px 2px rgba(168,63,89,.08)); }
+    @keyframes float-up { from { transform: translateY(0) rotate(0deg); opacity: 0; }
+      12% { opacity: .8; } 85% { opacity: .65; } to { transform: translateY(-115vh) rotate(24deg); opacity: 0; } }
+    main { position: relative; z-index: 1; width: min(760px, calc(100% - 30px)); margin: 0 auto; padding: 38px 0 44px; }
+    .top-note { text-align: center; color: var(--rose-dark); font-size: .78rem; letter-spacing: .23em; text-transform: uppercase; margin: 4px 0 18px; }
+    .card { position: relative; background: rgba(255,253,249,.93); border: 1px solid rgba(214,169,95,.65);
+      border-radius: 8px; padding: clamp(24px, 6vw, 58px); box-shadow: 0 18px 55px rgba(111,66,75,.10); overflow: hidden; }
+    .card:before, .card:after { content: "✦  ♥  ✦"; position: absolute; color: var(--gold); letter-spacing: .42em; font-size: .75rem; opacity: .8; }
+    .card:before { top: 15px; left: 18px; } .card:after { bottom: 15px; right: 8px; }
+    .stamp { width: 94px; height: 94px; margin: 5px auto 23px; display: grid; place-items: center; border: 1px solid var(--pink);
+      border-radius: 50%; background: #fff4f5; box-shadow: inset 0 0 0 7px #fffaf8, inset 0 0 0 8px #f2c5cf;
+      font-size: 38px; animation: heartbeat 2.2s ease-in-out infinite; }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 8% { transform: scale(1.06); } 16% { transform: scale(1); } 24% { transform: scale(1.04); } 34% { transform: scale(1); } }
+    .eyebrow { color: var(--rose); font-size: .82rem; letter-spacing: .18em; text-transform: uppercase; text-align: center; margin: 0 0 10px; }
+    h1 { font-size: clamp(2.5rem, 8vw, 4.3rem); line-height: .98; letter-spacing: -.045em; font-weight: normal; margin: 0; color: #6b3c4a; text-align: center; }
+    h1 em { color: var(--rose); font-weight: normal; }
+    .divider { display: flex; align-items: center; gap: 13px; width: min(280px, 80%); margin: 25px auto; color: var(--gold); }
+    .divider:before, .divider:after { content: ""; height: 1px; background: #e8cda4; flex: 1; }
+    .message { max-width: 570px; margin: 0 auto; font-size: clamp(1.05rem, 3.2vw, 1.2rem); line-height: 1.85; }
+    .message p { margin: 0 0 17px; }
+    .message .salutation { color: var(--rose-dark); font-size: 1.35rem; }
+    .message .highlight { text-align: center; color: var(--rose-dark); font-style: italic; }
+    .message .list-lines p { margin-bottom: 5px; }
+    .signoff { text-align: center; margin-top: 27px !important; }
+    .signature { text-align: center; color: var(--rose-dark); font-size: 1.3rem; font-style: italic; }
+    .ps { margin-top: 28px; padding: 20px; border: 1px dashed #e6a9b7; background: #fff4f5; border-radius: 8px; font-size: .98rem; line-height: 1.75; }
+    .ps strong { color: var(--rose-dark); }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; margin: 28px auto 0;
+      border: 0; border-radius: 999px; padding: 14px 24px; color: white; background: var(--rose); font: 1rem Georgia, "Times New Roman", serif;
+      cursor: pointer; box-shadow: 0 7px 18px rgba(216,95,120,.22); transition: transform .18s ease, background .18s ease; }
+    .button:hover { background: var(--rose-dark); transform: translateY(-2px); }
+    .button:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .button-wrap { text-align: center; }
+    .reveal { display: none; margin: 24px auto 0; padding: 20px 18px; max-width: 470px; border-radius: 8px;
+      background: #fff4f5; border: 1px dashed #e6a9b7; line-height: 1.7; text-align: center; animation: pop-in .45s ease both; }
+    .reveal.show { display: block; }
+    @keyframes pop-in { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .footer { text-align: center; color: #a27e85; font-size: .85rem; margin: 20px 0 0; letter-spacing: .04em; }
+    .sparkle { display: inline-block; color: var(--gold); margin: 0 5px; }
+    @media (prefers-reduced-motion: reduce) { *, *:before, *:after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" aria-hidden="true" id="hearts"></div>
+  <main>
+    <section class="card" aria-labelledby="title">
+      <div class="stamp" aria-hidden="true">♥</div>
+      <p class="eyebrow">Para a minha pessoa favorita</p>
+      <h1 id="title">Querida <em>Clarinha</em></h1>
+      <div class="divider"><span>♥</span></div>
+
+      <article class="message">
+        <p class="salutation">Querida Clarinha,</p>
+
+        <p>Ainda não é desta que recebes um poema meu, apenas um pequeno textinho escrito numa noite aleatória em que as saudades tuas batem novamente. Essa noite foi ontem à noite.</p>
+
+        <p>Escrevo no presente do indicativo para me referir ao dia do teu dia de aniversário, amanhã, porque me dizem que é que é um tempo verbal mas fácil. Sei que és mesquinha com o português e reconheço que a minha burrice gramatical iria desviar a tua atenção daquilo que te quero dizer.</p>
+
+        <p>Mas chega de rodeios! Fazes anos hoje!! Aposto que já ouviste isto milhões de vezes hoje, mas muitos parabéns!!</p>
+
+        <p>Não sei como é que se passou o teu dia, mas se tivesse de adivinhar diria que foste para FMUP, te cruzaste com pelo menos 20 pessoas que te desejaram parabéns, olhaste para o telemóvel e viste mais 100 mensagens com o mesmo propósito por responder. E isso leva-me ao ponto deste texto.</p>
+
+        <p>Queria que tirasses um momento para refletir na quantidade de pessoas com que te cruzaste durante estes 21 lindos anos da tua existência e com quem ainda hoje partilhas sorrisos.</p>
+
+        <p>Isto foi uma das coisas que mais me intrigaram quando te conheci. Não sei se te cheguei a dizer isto muitas vezes, mas parecia que a tua personalidade era contagiante, "magnética" até. Conheci-te em fevereiro de 2025, mas foi nos últimos oito meses que realmente resolvi o mistério do que está por trás desse "magnetismo".</p>
+
+        <p class="highlight">Nada... Apenas tu. Sem truques, sem farsas. Pura e simplesmente a Clara.</p>
+
+        <div class="list-lines">
+          <p>A Clara que se preocupa com o outro e que esforça sempre para ser alguém melhor.</p>
+          <p>A Clara que não se apercebe quando sorri, o mundo sorri.</p>
+          <p>A Clara que tem o maior coração de todos,</p>
+          <p>A Clara que ouve e demonstra empatia pelos problemas dos outros mesmo quando os seus próprios lhe pesam na mente.</p>
+          <p>A Clara que é aquele abraço quando precisamos dele, aquele ombro para nos apoiarmos.</p>
+        </div>
+
+        <p>Faz-te lembrar Alguém? A mim faz... Ainda não conheço muito d'Ele mas se tivesse de o imaginar, seria muito semelhante...</p>
+
+        <p>Enfim.</p>
+
+        <p>Como quando fizeste scan ao QR code não estavas a pensar em perder dois dias úteis a ler parvoíces minhas, completo e termino com isto: tenho muita sorte por as nossas vidas se terem cruzado e deixa-me incrivelmente feliz imaginar todas as voltas ao sol que vou viver a teu lado. Fazes de mim a pessoa mais sortuda do mundo.</p>
+
+        <p class="signoff">Amo-te sempre,</p>
+        <p class="signature">Assinado: O teu torrãozinho de mel.</p>
+
+        <div class="ps">
+          <strong>P.S.:</strong> Recomenda-se o uso de roupa quente em Milão. A companhia não se responsabiliza por mãos frias, narizes vermelhos ou abraços prolongados sob falsos pretextos meteorológicos. Os voos são limitados ao seu contexto. A bagagem emocional não tem limite de peso. O amor aqui declarado é válido por tempo indeterminado e não admite devoluções. A entidade responsável não se responsabiliza por saudades excessivas, sorrisos espontâneos ou vontade de estar junto do remetente. A renovação é automática. Para cancelar, contactar o departamento de milagres.
+        </div>
+      </article>
+
+      <div class="button-wrap">
+        <button class="button" id="surpriseButton" type="button">Uma última coisinha <span aria-hidden="true">♥</span></button>
+        <div class="reveal" id="surprise" aria-live="polite">
+          <strong>A minha companhia de viagem favorita, para sempre.</strong><br>
+          Mal posso esperar para explorar Milão contigo, dar-te a mão e criar mais uma história nossa. Amo-te. ♡
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    // If someone opens the letter URL directly, send them through the disclaimer first.
+    try {
+      if (sessionStorage.getItem('clarinhaDisclaimerAccepted') !== 'yes') {
+        window.location.replace('index.html');
+      }
+    } catch (_) {
+      // If sessionStorage is unavailable, the letter remains accessible.
+    }
+
+    const hearts = document.getElementById('hearts');
+    const symbols = ['♥', '♡', '✧', '✦'];
+    for (let i = 0; i < 18; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.textContent = symbols[i % symbols.length];
+      heart.style.left = (Math.random() * 100) + '%';
+      heart.style.animationDuration = (11 + Math.random() * 12) + 's';
+      heart.style.animationDelay = (-Math.random() * 20) + 's';
+      heart.style.fontSize = (14 + Math.random() * 18) + 'px';
+      hearts.appendChild(heart);
+    }
+    document.getElementById('surpriseButton').addEventListener('click', () => {
+      const reveal = document.getElementById('surprise');
+      const isOpen = reveal.classList.toggle('show');
+      document.getElementById('surpriseButton').innerHTML = isOpen
+        ? 'Aww, mais um abraço <span aria-hidden="true">♥</span>'
+        : 'Uma última coisinha <span aria-hidden="true">♥</span>';
+    });
+  </script>
+</body>
+</html>
